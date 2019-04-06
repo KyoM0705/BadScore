@@ -1,0 +1,20 @@
+<!-- テンプレートの継承：base.htmlを継承する。 -->
+{% extends "base.html" %}
+
+<!-- staticをロード -->
+{% load static %}
+
+<!-- base.htmlのブロックを上書き。 -->
+{% block page_title %}Django勉強{% endblock %}
+
+{% block content %}
+    <p>
+    <h2>ようこそ！ExtendしたDjangoの世界へ</h2>
+    <br>
+    画像をクリック！
+    <hr>
+     <a href="{% url 'badApp:member' %}">
+         <img src="{% static "badApp/bad.png" %}" />
+     </a>
+    </p>
+{% endblock %}

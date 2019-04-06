@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- staticをロード -->
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>バドミントン</title>
+</head>
+<body>
+
+   <form action="" method="post">
+       {% csrf_token %}
+       <input type="hidden" name="score" value="1">
+       <input type="hidden" name="left" value={{ leftCount }}>
+       <input type="hidden" name="right" value={{ rightCount }}>
+       <input type="submit" value="{{ leftCount }}">
+   </form>
+
+   {% if server == "left_odd" %}
+       <img src="{% static "badApp/left_odd.jpg" %}" />
+   {% else %}{% if server == "left_even" %}
+       <img src="{% static "badApp/left_even.jpg" %}" />
+   {% else %}{% if server == "right_odd" %}
+       <img src="{% static "badApp/right_odd.jpg" %}" />
+   {% else %}{% if server == "right_even" %}
+       <img src="{% static "badApp/right_even.jpg" %}" />
+   {% else %}
+       <img src="{% static "badApp/original.jpg" %}" />
+   {% endif %}{% endif %}{% endif %}{% endif %}
+
+   <form action="" method="post">
+       {% csrf_token %}
+       <input type="hidden" name="score" value="2">
+       <input type="hidden" name="left" value={{ leftCount }}>
+       <input type="hidden" name="right" value={{ rightCount }}>
+       <input type="submit" value="{{ rightCount }}">
+   </form>
+
+</body>
+</html>

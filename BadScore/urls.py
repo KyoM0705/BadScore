@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# includeをつかえるようにするため
+from django.conf.urls import include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # badApp/urls1.pyをインクルードする
+    path('badApp/', include('badApp.urls1')),
 ]

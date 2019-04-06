@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>メンバー</title>
+</head>
+<body>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <label>左名前1:<input type="text" size="20" name="left_name1" value="Aさん"></label>
+        <br>
+        <label>左名前2:<input type="text" size="20" name="left_name2" value="Bさん"></label>
+        <br>
+        <label>右名前1:<input type="text" size="20" name="right_name1" value="Cさん"></label>
+        <br>
+        <label>右名前2:<input type="text" size="20" name="right_name2" value="Dさん"></label>
+        <br>
+        <input type="submit" value="送信">
+    </form>
+
+</body>
+</html>
