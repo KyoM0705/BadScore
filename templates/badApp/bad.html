@@ -7,36 +7,43 @@
 <head>
     <meta charset="UTF-8">
     <title>バドミントン</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
-<body>
+<body class="bad">
+<div class="wrap">
 
+<div class="box_1">
    <form action="" method="post">
        {% csrf_token %}
        <input type="hidden" name="score" value="1">
        <input type="hidden" name="left" value={{ leftCount }}>
        <input type="hidden" name="right" value={{ rightCount }}>
-       <input type="submit" value="{{ leftCount }}">
+       <input class="scoreButton" type="submit" value="{{ leftCount }}">
    </form>
-
+</div>
+<div class="box_2">
    {% if server == "left_odd" %}
-       <img src="{% static "badApp/left_odd.jpg" %}" />
+           <img src="{% static 'badApp/left_odd.jpg' %}" />
    {% else %}{% if server == "left_even" %}
-       <img src="{% static "badApp/left_even.jpg" %}" />
+       <img src="{% static 'badApp/left_even.jpg' %}" />
    {% else %}{% if server == "right_odd" %}
-       <img src="{% static "badApp/right_odd.jpg" %}" />
+       <img src="{% static 'badApp/right_odd.jpg' %}" />
    {% else %}{% if server == "right_even" %}
-       <img src="{% static "badApp/right_even.jpg" %}" />
+       <img src="{% static 'badApp/right_even.jpg' %}" />
    {% else %}
-       <img src="{% static "badApp/original.jpg" %}" />
+       <img src="{% static 'badApp/original.jpg' %}" />
    {% endif %}{% endif %}{% endif %}{% endif %}
-
+</div>
+<div class="box_3">
    <form action="" method="post">
        {% csrf_token %}
        <input type="hidden" name="score" value="2">
        <input type="hidden" name="left" value={{ leftCount }}>
        <input type="hidden" name="right" value={{ rightCount }}>
-       <input type="submit" value="{{ rightCount }}">
+       <input class="scoreButton"type="submit" value="{{ rightCount }}">
    </form>
 
+</div>
+</div>
 </body>
 </html>

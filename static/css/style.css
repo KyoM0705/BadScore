@@ -1,0 +1,30 @@
+h1{color: blue;}
+h2{color: blueviolet;}
+body.top{
+    background-color: coral;
+}
+.bad{
+    background-color: blanchedalmond;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+}
+.wrap{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+input.scoreButton{
+    width: 80px;
+    height: 159px;
+}
+#decision{
+    width: 150px;
+    height: 50px;
+}

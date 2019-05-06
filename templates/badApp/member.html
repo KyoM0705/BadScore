@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- staticをロード -->
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <title>メンバー</title>
+    <meta name="Content-Style-Type" content="text/css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 <body>
+　　<h1>タイトル</h1>
 
     <form action="" method="post">
         {% csrf_token %}
@@ -16,7 +23,7 @@
         <br>
         <label>右名前2:<input type="text" size="20" name="right_name2" value="Dさん"></label>
         <br>
-        <input type="submit" value="送信">
+        <input id="decision" type="submit" value="決定">
     </form>
 
 </body>
