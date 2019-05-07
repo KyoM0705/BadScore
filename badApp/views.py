@@ -47,12 +47,13 @@ def member(request):
 
 
 def bad(request):
-    # テーブルから4名の名前取得
+    # テーブルから最新取得
     column = Score.objects.order_by('-id').first()
     ll = column.leftLeft
     lr = column.leftRight
     rl = column.rightLeft
     rr = column.rightRight
+    server = column.server
 
     if not request.POST.get('score'):
         left_count = 0
@@ -64,22 +65,35 @@ def bad(request):
     # left=1,right=2
     score = request.POST.get('score')
 
-    # 奇数偶数でサーブコート判定、左コートのメンバーを入れ替える
+    # 奇数偶数でサーブコート判定、左コートのメンバー判定
     if score == '1':
         left_count += 1
         if left_count % 2 == 0:
             flag = "left_even"
         else:
             flag = "left_odd"
-        data = {
-            'leftCount': left_count,
-            'rightCount': right_count,
-            'court': flag,
-            'll': lr,
-            'lr': ll,
-            'rl': rl,
-            'rr': rr,
-        }
+
+        # サーブ維持の場合のみメンバー入れ替え
+        if server == "" or server == "left":
+            data = {
+                'leftCount': left_count,
+                'rightCount': right_count,
+                'court': flag,
+                'll': lr,
+                'lr': ll,
+                'rl': rl,
+                'rr': rr,
+            }
+        else:
+            data = {
+                'leftCount': left_count,
+                'rightCount': right_count,
+                'court': flag,
+                'll': ll,
+                'lr': lr,
+                'rl': rl,
+                'rr': rr,
+            }
 
         # スコアをインサート
         insertscore = Score(
@@ -90,12 +104,13 @@ def bad(request):
             leftRight=data['lr'],
             rightLeft=data['rl'],
             rightRight=data['rr'],
+            server="left",
         )
         insertscore.save()
 
         return render(request, 'badApp/bad.html', data)
 
-    # 奇数偶数でサーブコート判定、右コートのメンバーを入れ替える
+    # 奇数偶数でサーブコート判定、右コートのメンバー判定
     elif score == '2':
         right_count += 1
         if right_count % 2 == 0:
@@ -103,15 +118,27 @@ def bad(request):
         else:
             flag = "right_odd"
 
-        data = {
-            'leftCount': left_count,
-            'rightCount': right_count,
-            'court': flag,
-            'll': ll,
-            'lr': lr,
-            'rl': rr,
-            'rr': rl,
-        }
+        # サーブ維持の場合のみメンバー入れ替え
+        if server == "" or server == "right":
+            data = {
+                'leftCount': left_count,
+                'rightCount': right_count,
+                'court': flag,
+                'll': ll,
+                'lr': lr,
+                'rl': rr,
+                'rr': rl,
+            }
+        else:
+            data = {
+                'leftCount': left_count,
+                'rightCount': right_count,
+                'court': flag,
+                'll': ll,
+                'lr': lr,
+                'rl': rl,
+                'rr': rr,
+            }
 
         # スコアをインサート
         insertscore = Score(
@@ -122,6 +149,7 @@ def bad(request):
             leftRight=data['lr'],
             rightLeft=data['rl'],
             rightRight=data['rr'],
+            server="right",
         )
         insertscore.save()
 
