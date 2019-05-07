@@ -12,6 +12,7 @@
 <body class="bad">
 <div class="wrap">
 
+<!-- DBに常にインサートしてるから渡さなくてよくね？？？？？？ -->
 <div class="box_1">
    <form action="" method="post">
        {% csrf_token %}
@@ -22,13 +23,17 @@
    </form>
 </div>
 <div class="box_2">
-   {% if server == "left_odd" %}
+   <p id="leftLeft">{{ ll }}さん</p>
+   <p id="leftRight">{{ lr }}さん</p>
+   <p id="rightLeft">{{ rl }}さん</p>
+   <p id="rightRight">{{ rr }}さん</p>
+   {% if court == "left_odd" %}
            <img src="{% static 'badApp/left_odd.jpg' %}" />
-   {% else %}{% if server == "left_even" %}
+   {% else %}{% if court == "left_even" %}
        <img src="{% static 'badApp/left_even.jpg' %}" />
-   {% else %}{% if server == "right_odd" %}
+   {% else %}{% if court == "right_odd" %}
        <img src="{% static 'badApp/right_odd.jpg' %}" />
-   {% else %}{% if server == "right_even" %}
+   {% else %}{% if court == "right_even" %}
        <img src="{% static 'badApp/right_even.jpg' %}" />
    {% else %}
        <img src="{% static 'badApp/original.jpg' %}" />
